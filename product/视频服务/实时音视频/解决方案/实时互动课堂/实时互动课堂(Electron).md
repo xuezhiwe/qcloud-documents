@@ -22,6 +22,10 @@ TRTC 实时互动课堂是一款开源的在线课堂软件，支持一名教师
 
 点击进入 [Github](https://github.com/TencentCloud/trtc-education-electron) ，参照说明文档，运行源码。可以根据您的业务需要，基于开源代码二次开发。
 
+## 多终端互联互通
+
+Electron 版的实时互动课堂，与 [Windows & Mac](https://cloud.tencent.com/document/product/647/63494)、[Android](https://cloud.tencent.com/document/product/647/45667)、[iOS](https://cloud.tencent.com/document/product/647/45681) 版的 [多人音视频房间](https://cloud.tencent.com/document/product/647/70345) 可以实现互通，软件逻辑层有一个接口一致的 TUIRoom 层实现多端互通，如果您有这些终端的互通需求，可以同时结合这些终端的开源项目，一起使用。
+
 ## 技术咨询
 了解更多详情您可 QQ 咨询：<dx-tag-link link="#QQ" tag="技术交流群">695855795</dx-tag-link>
 
