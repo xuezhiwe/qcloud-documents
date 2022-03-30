@@ -3,7 +3,8 @@ TUIkit 是腾讯云音视频团队在5000+客户的服务积累中，结合业�
 
 ## TUIKit 全家福
 ![](https://qcloudimg.tencent-cloud.cn/raw/86cf5a688af5cee4d0b5f3a223348bde.png)
-如上图所示，TUIKit分为TUICompenont和TUIWidget两种，同时搭配有基础的后台服务
+
+如上图所示，TUIKit分为TUICompenont和TUIWidget两种，同时支持可选的基础后台服务。
 ```
 ├── TUIComponent
 │   ├── TUICalling     // 通话组件（类微信通话），针对视频通话、客服、金融审核等音视频场景；
@@ -11,13 +12,16 @@ TUIkit 是腾讯云音视频团队在5000+客户的服务积累中，结合业�
 │   ├── TUILiveVoice   // 语聊直播组件，针对交友语聊、排队语聊，音乐房等音频场景； 
 │   ├── TUILiveVideo   // 视频互动直播组件，具备连麦、PK、音效等功能；
 │   ├── TUIChatSolon   // 语音沙龙组件，针对商务圆桌，兴趣论坛等音视频场景；
+│   ├── TUIPusher      // 含完整UI的推流组件，支持多种协议推流，PK等功能，支持挂载音效、弹幕等挂件；
+│   ├── TUIPusher      // 含完整UI的播放组件，支持多种协议播放，连麦主播等功能，支持挂载礼物、弹幕等挂件；
+│   ├── TUIPlayer      // 创新组件，针对在线KTV等新玩法的音视频的组件，可以搭配腾讯云正版曲库解锁更多玩法；
 │   ├── TUIChous       // 创新组件，针对合唱的音视频新玩法的音视频组件，可以搭配腾讯云正版曲库解锁更多玩法；
 │   ├── TUIKaroke      // 创新组件，针对在线KTV等新玩法的音视频的组件，可以搭配腾讯云正版曲库解锁更多玩法；
 ├── TUWidget
-│   ├── TUIBeauty      // 美颜组件
-│   ├── TUIAudioEffect // 音效组件
-│   ├── TUIBarrage     // 弹幕组件
-│   ├── TUIGift        // 礼物组件
+│   ├── TUIBeauty      // 美颜挂件
+│   ├── TUIAudioEffect // 音效挂件
+│   ├── TUIBarrage     // 弹幕挂件
+│   ├── TUIGift        // 礼物挂件
 ├── aPass （可选）
 │   ├── Room Serice    // 提供房间列表、房间热度、主播列表等功能；
 ```
