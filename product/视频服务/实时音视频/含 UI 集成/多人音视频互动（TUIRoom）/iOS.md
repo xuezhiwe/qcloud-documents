@@ -15,7 +15,7 @@ TUIRoom 是一个开源的音视频 UI 组件，通过在项目中集成 TUIRoom
 ### 步骤一：下载并导入 TUIRoom 组件
 您可通过 **cocoapods 导入组件**，具体步骤如下：
 
-如果需要屏幕分享功能，你可以通过【[官网链接](https://cloud.tencent.com/document/product/647/32689)】去下载TXLiteAVSDK_ReplayKitExt.framework，然后加入到自己工程中，实现以参照[示例工程](https://github.com/tencentyun/TUIRoom/tree/main/iOS/Example/TXReplayKit_Screen)。
+如果需要屏幕分享功能，你可以通过【[官网链接](https://cloud.tencent.com/document/product/647/32689)】去下载TXLiteAVSDK_ReplayKitExt.framework，然后加入到自己工程中，在target中新建"Broadcast Upload Extension"，实现可以参考[示例工程](https://github.com/tencentyun/TUIRoom/tree/main/iOS/Example/TXReplayKit_Screen)。
 
 点击进入 [Github](https://github.com/tencentyun/TUIRoom) ，选择克隆/下载代码，然后拷贝 iOS下的`Resources`、`SDK`、`Source`文件夹 和`TUIRoom.podspec`文件到您的工程中，并完成如下导入动作：
 
@@ -54,7 +54,6 @@ TUILogin.initWithSdkAppID(Int32("您的sdkAppID"))
 TUILogin.login("您的userId", userSig: "您的userSig", succ: {
      debugPrint("login success")
 }, fail: { code, errorDes in
-     failed(errorDes ?? "")
      debugPrint("login failed, code:\(code), error: \(errorDes ?? "nil")")
 })
 ```
