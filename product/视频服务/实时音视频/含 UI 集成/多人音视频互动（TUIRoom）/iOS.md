@@ -95,7 +95,7 @@ TUIRoomCore.shareInstance().enterRoom("\(roomId)", callback: { [weak self] code,
 ```
 #### 4.3. 实现离开房间 
 
-- **主持人**调用  [TUIRoomCore#destroyRoom](https://cloud.tencent.com/document/product/647/45680#destroyRoom) 接口解散房间，解散 IM 群聊，退出 TRTC 房间，成员端会收到 onDestroyRoom 回调消息，通知群解散，退出 TRTC 房间。
+- **主持人**调用  [TUIRoomCore#destroyRoom](https://cloud.tencent.com/document/product/647/45680#destroyroom) 接口解散房间，解散 IM 群聊，退出 TRTC 房间，成员端会收到 onDestroyRoom 回调消息，通知群解散，退出 TRTC 房间。
 - **成员**调用  [TUIRoomCore#leaveRoom](https://cloud.tencent.com/document/product/647/45680#leaveroom) 接口解散房间，退出 IM 群聊，退出 TRTC 房间，其他成员端会收到 onRemoteUserLeave 回调，通知有成员离开房间。
 
 ```swift
