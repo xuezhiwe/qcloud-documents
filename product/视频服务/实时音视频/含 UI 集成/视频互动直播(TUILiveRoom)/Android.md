@@ -56,41 +56,7 @@ api project(":Source")
 </dx-codeblock>
 
 [](id:model.step3)
-### 步骤三：创建并登录组件
-1. 调用 sharedInstance 接口可以创建一个 TRTCLiveRoom 组件的实例对象。
-2. 创建一个 TRTCLiveRoomConfig 对象，该对象可以设置  useCDNFirst 和 CDNPlayDomain 属性：
- - useCDNFirst 属性：用于设置观众观看方式。true 表示普通观众通过 CDN 观看，计费便宜但延时较高。false 表示普通观众通过低延时观看，计费价格介于 CDN 和连麦之间，但延迟可控制在1s以内。
- - CDNPlayDomain 属性：在 useCDNFirst 设置为 true 时才会生效，用于指定 CDN 观看的播放域名，您可以登录直播控制台 >【[域名管理](https://console.cloud.tencent.com/live/domainmanage)】页面中进行设置。
-3. 调用 `login` 函数完成组件的登录，请参考下表填写关键参数：
- <table>
-<tr>
-<th>参数名</th>
-<th>作用</th>
-</tr>
-<tr>
-<td>sdkAppId</td>
-<td>您可以在 <a href="https://console.cloud.tencent.com/trtc/app">实时音视频控制台</a> 中查看 SDKAppID。</td>
-</tr>
-<tr>
-<td>userId</td>
-<td>当前用户的 ID，字符串类型，只允许包含英文字母（a-z、A-Z）、数字（0-9）、连词符（-）和下划线（_）。建议结合业务实际账号体系自行设置。</td>
-</tr>
-<tr>
-<td>userSig</td>
-<td>腾讯云设计的一种安全保护签名，获取方式请参考 <a href="https://cloud.tencent.com/document/product/647/17275">如何计算及使用 UserSig</a>。</td>
-</tr>
-<tr>
-<td>config</td>
-<td>全局配置信息，请在登录时初始化，登录之后不可变更。<ul style="margin:0;">
-<li>useCDNFirst 属性：用于设置观众观看方式。true 表示普通观众通过 CDN 观看，计费便宜但延时较高。false 表示普通观众通过低延时观看，计费价格介于 CDN 和连麦之间，但延迟可控制在1s以内。</li>
-<li>CDNPlayDomain 属性：在 useCDNFirst 设置为 true 时才会生效，用于指定 CDN 观看的播放域名，您可以登录直播控制台 >【<a href="https://console.cloud.tencent.com/live/domainmanage">域名管理</a>】页面中进行设置。</li>
-</ul></td>
-</tr>
-<tr>
-<td>callback</td>
-<td>登录回调，成功时 code 为0。</td>
-</tr>
-</table>
+### 步骤三：初始化并登录组件 [TRTCLiveRoom#login](https://cloud.tencent.com/document/product/647/43391#login)
 <dx-codeblock>
 ::: java java
 TRTCLiveRoom mLiveRoom = TRTCLiveRoom.sharedInstance(this);
@@ -109,9 +75,29 @@ mLiveRoom.login(SDKAPPID, userId, userSig, config,
 });
 :::
 </dx-codeblock>
+#### 3.1 参数说明
+
+- **SDKAppID**：**TRTC 应用ID**，如果您未开通腾讯云 TRTC 服务，可以点击 [这里](https://console.cloud.tencent.com/trtc/app)，进入腾讯云实时音视频控制台，创建一个新的的TRTC应用后，点击应用信息，SDKAppID信息如下图所示；
+ <img src="https://liteav.sdk.qcloud.com/app/doc/app_manager_sdk_secretkey.png" width="700">
+ 
+- **Secretkey**：**TRTC 应用密钥**，和SDKAppId对应，进入 [TRTC 应用管理](https://console.cloud.tencent.com/trtc/app) 后，SecretKey信息如上图所示；
+
+- **userId**：当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（_）。建议结合业务实际账号体系自行设置。
+
+- **userSig**：根据SDKAppId、userId，Secretkey等信息计算得到的安全保护签名，您可以点击 [这里](https://console.cloud.tencent.com/trtc/usersigtool) 直接在线生成一个调试的userSig，也可以参照我们的[示例工程](https://github.com/tencentyun/TUILiveRoom/blob/main/Android/Debug/src/main/java/com/tencent/liteav/debug/GenerateTestUserSig.java#L88)自行计算，更多信息见 [如何计算及使用 UserSig](https://cloud.tencent.com/document/product/647/17275)。
+
+- **config**：全局配置信息，请在登录时初始化，登录之后不可变更。
+
+- **useCDNFirst** ：用于设置观众观看方式。true 表示普通观众通过 CDN 观看，计费便宜但延时较高。false 表示普通观众通过低延时观看，计费价格介于 CDN 和连麦之间，但延迟可控制在1s以内。
+
+- **CDNPlayDomain**：在 useCDNFirst 设置为 true 时才会生效，用于指定 CDN 观看的播放域名，您可以登录直播控制台 >【<a href="https://console.cloud.tencent.com/live/domainmanage">域名管理</a>】页面中进行设置。
+
+- **callback**：登录回调，成功时 code 为0。
+
+
 
 [](id:model.step4)
-### 步骤四：主播端开播
+### 步骤四：主播端开播 [TRTCLiveRoom#createRoom](https://cloud.tencent.com/document/product/647/43391#createroom)
 1. 主播执行 [步骤三](#model.step3) 登录后，可以调用 `setSelfProfile` 设置自己的昵称和头像。
 2. 主播在开播前可先调用 `startCameraPreview` 开启摄像头预览，界面上可以配置美颜调节按钮调用，通过 `getBeautyManager` 进行美颜设置。
 >?非企业版 SDK 不支持变脸和贴图挂件等高级美颜功能。
@@ -148,7 +134,7 @@ mLiveRoom.createRoom(123456789, param, new TRTCLiveRoomCallback.ActionCallback()
 </dx-codeblock>
 
 [](id:model.step5)
-### 步骤五：观众端观看
+### 步骤五：观众端观看 [TRTCLiveRoom#enterRoom](https://cloud.tencent.com/document/product/647/43391#enterroom)
 1. 观众端执行 [步骤三](#model.step3) 登录后，可以调用 `setSelfProfile` 设置自己的昵称和头像。
 2. 观众端向业务后台获取最新的直播房间列表。
 >?App 中的直播间列表仅做演示使用，直播间列表的业务逻辑千差万别，腾讯云暂不提供直播间列表的管理服务，请自行管理您的直播间列表。
@@ -191,7 +177,7 @@ mLiveRoom.setDelegate(new TRTCLiveRoomDelegate() {
 </dx-codeblock>
 
 [](id:model.step6)
-### 步骤六：观众与主播连麦
+### 步骤六：观众与主播连麦 [TRTCLiveRoom#requestJoinAnchor](https://cloud.tencent.com/document/product/647/43391#requestjoinanchor)
 1. 观众端调用 requestJoinAnchor 向主播端发起连麦请求。
 2. 主播端会收到 TRTCLiveRoomDelegate#onRequestJoinAnchor（即有观众请求与您连麦）的事件通知。
 3. 主播端可以通过调用 responseJoinAnchor 决定是否接受来自观众端的连麦请求。
@@ -242,7 +228,7 @@ mLiveRoom.setDelegate(new TRTCLiveRoomDelegate() {
 </dx-codeblock>
 
 [](id:model.step7)
-### 步骤七：实现文字聊天和弹幕消息
+### 步骤七：实现文字聊天 [TRTCLiveRoom#sendRoomTextMsg](https://cloud.tencent.com/document/product/647/43391#sendroomtextmsg)
 - 通过 `sendRoomTextMsg` 可以发送普通的文本消息，所有在该房间内的主播和观众均可以收到 `onRecvRoomTextMsg` 回调。
  即时通信 IM 后台有默认的敏感词过滤规则，被判定为敏感词的文本消息不会被云端转发。
   <dx-codeblock>
@@ -259,6 +245,9 @@ mLiveRoom.setDelegate(new TRTCLiveRoomDelegate() {
   });
   :::
   </dx-codeblock>
+
+[](id:model.step8)
+### 步骤八：实现弹幕消息 [TRTCLiveRoom#sendRoomCustomMsg](https://cloud.tencent.com/document/product/647/43391#sendroomcustommsg)
 - 通过 `sendRoomCustomMsg` 可以发送自定义（信令）的消息，所有在该房间内的主播和观众均可以收到 `onRecvRoomCustomMsg` 回调。
 自定义消息常用于传输自定义信令，例如用于点赞消息的发送和广播。
 <dx-codeblock>
@@ -283,8 +272,8 @@ mLiveRoom.setDelegate(new TRTCLiveRoomDelegate() {
 :::
 </dx-codeblock>
 
-[](id:model.step8)
-### 步骤八：主播与主播 PK
+[](id:model.step9)
+### 步骤九：主播与主播 PK  [TRTCLiveRoom#requestRoomPK](https://cloud.tencent.com/document/product/647/43391#requestroompk)
 1. 房间状态监听&PK 列表接入（不需要PK列表请跳过此步骤）
 房间状态可使用 `LiveRoomManager` 进行监听，如下：
 <dx-codeblock>
