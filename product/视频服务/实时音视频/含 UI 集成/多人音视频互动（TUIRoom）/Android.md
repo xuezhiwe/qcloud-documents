@@ -1,6 +1,6 @@
-## 组件介绍
+## 一. 组件介绍
 
-TUIRoom 是一个开源的音视频 UI 组件，通过在项目中集成 TUIRoom 组件，您只需要编写几行代码就可以为您的 App 添加屏幕分享、美颜、低延时视频通话等。TUIRoom包含 Android、iOS、Windows，Mac等平台的源代码，基本功能如下图所示：
+TUIRoom 是一个开源的音视频 UI 组件，通过在项目中集成 TUIRoom 组件，您只需要编写几行代码就可以为您的 App 添加屏幕分享、美颜、低延时视频通话等。TUIRoom同时支持[iOS](https://cloud.tencent.com/document/product/647/45681)、[Windows](https://cloud.tencent.com/document/product/647/63494)，[Mac](https://cloud.tencent.com/document/product/647/63494)等平台，基本功能如下图所示：
 
 <table class="tablestyle">
 <tbody><tr>
@@ -83,12 +83,12 @@ api project(':Source')
 
 - **userId**：当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（_）。建议结合业务实际账号体系自行设置。
 
-- **userSig**：根据SDKAppId、userId，Secretkey等信息计算得到的安全保护签名，您可以点击 [这里](https://console.cloud.tencent.com/trtc/usersigtool) 直接在线生成一个调试的userSig，也可以参照我们的[示例工程](https://github.com/tencentyun/TUICalling/blob/main/Android/App/src/main/java/com/tencent/liteav/demo/LoginActivity.java#L74)自行计算，更多信息见 [如何计算及使用 UserSig](https://cloud.tencent.com/document/product/647/17275)。
+- **userSig**：根据SDKAppId、userId，Secretkey等信息计算得到的安全保护签名，您可以点击 [这里](https://console.cloud.tencent.com/trtc/usersigtool) 直接在线生成一个调试的userSig，也可以参照我们的[示例工程](https://github.com/tencentyun/TUIRoom/blob/main/Android/Debug/src/main/java/com/tencent/liteav/debug/GenerateTestUserSig.java#L88)自行计算，更多信息见 [如何计算及使用 UserSig](https://cloud.tencent.com/document/product/647/17275)。
 
 
 ### 步骤四：实现多人音视频互动
 
-#### 4.1. 实现房主创建多人音视频互动房间 [TUIRoomCore.createRoom](https://cloud.tencent.com/document/product/647/45668#createroom)
+#### 4.1. 实现房主创建多人音视频互动房间 [TUIRoomCore#createRoom](https://cloud.tencent.com/document/product/647/45668#createroom)
 ```java
 // 1.房主调用创建房间
 int roomId = 12345; //房间id
@@ -104,7 +104,7 @@ mTUIRoomCore.createRoom(roomId, TUIRoomCoreDef.SpeechMode.FREE_SPEECH,
 });
 ```
 
-#### 4.2. 实现其他成员加入音视频房间 [TUIRoomCore.enterRoom](https://cloud.tencent.com/document/product/647/45668#enterroom)
+#### 4.2. 实现其他成员加入音视频房间 [TUIRoomCore#enterRoom](https://cloud.tencent.com/document/product/647/45668#enterroom)
 ```java
 // 1.其它成员调用加入房间
 mTUIRoomCore.enterRoom(roomId, new TUIRoomCoreCallback.ActionCallback() {
@@ -123,7 +123,7 @@ public void onRemoteUserEnterSpeechState(final String userId) {
 }
 ```
 
-#### 4.3. 实现房主解散房间 [TUIRoomCore.destroyRoom](https://cloud.tencent.com/document/product/647/45668#destroyroom)
+#### 4.3. 实现房主解散房间 [TUIRoomCore#destroyRoom](https://cloud.tencent.com/document/product/647/45668#destroyroom)
 ```java
 // 1.房主调用解散房间
 mTUIRoomCore.destroyRoom(new TUIRoomCoreCallback.ActionCallback() {
@@ -140,7 +140,7 @@ public void onDestroyRoom() {
 }
 ```
 
-#### 4.4. 实现成员离开房间 [TUIRoomCore.leaveRoom](https://cloud.tencent.com/document/product/647/45668#leaveroom)
+#### 4.4. 实现成员离开房间 [TUIRoomCore#leaveRoom](https://cloud.tencent.com/document/product/647/45668#leaveroom)
 ```java
 // 1.非房主身份调用离开房间
 mTUIRoomCore.leaveRoom(new TUIRoomCoreCallback.ActionCallback() {
@@ -157,7 +157,7 @@ public void onRemoteUserLeave(String userId) {
 }
 ```
 
-#### 4.5. 实现屏幕分享 [TRTCVoiceRoom.startScreenCapture](https://cloud.tencent.com/document/product/647/45668#startscreencapture)
+#### 4.5. 实现屏幕分享 [TUIRoomCore#startScreenCapture](https://cloud.tencent.com/document/product/647/45668#startscreencapture)
 ```java
 // 1.在 AndroidManifest.xml 文件中添加 SDK 录屏功能的 activity 和权限
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
