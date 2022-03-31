@@ -1,4 +1,4 @@
-## 组件介绍
+## 一. 组件介绍
 
 TUILiveRoom 是一个开源的音视频 UI 组件，通过在项目中集成 TUILiveRoom 组件，您只需要编写几行代码就可以为您的 App 添加“视频互动直播”等场景。TUILiveRoom 同时支持 [Android](https://cloud.tencent.com/document/product/647/43182)、[Flutter](https://cloud.tencent.com/document/product/647/57388)等平台，基本功能如下图所示：
 
@@ -50,10 +50,7 @@ pod install
 ### 步骤三：初始化并登陆 [TRTCLiveRoom#login](https://cloud.tencent.com/document/product/647/43390#login)
 
 ```Swift
- class LiveRoomController: UIViewController {
-   let mTRTCLiveRoom = TRTCLiveRoom()
- }
- 
+ let mTRTCLiveRoom = TRTCLiveRoom()
  //useCDNFirst：true 表示普通观众通过 CDN 观看，false 表示普通观众通过低延时观看
  //CDNPlayDomain：表示 CDN 观看时配置的播放域名
  let config = TRTCLiveRoomConfig(useCDNFirst: useCDNFirst, cdnPlayDomain: yourCDNPlayDomain)

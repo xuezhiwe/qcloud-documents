@@ -1,4 +1,4 @@
-## 组件介绍
+## 一. 组件介绍
 
 TUIVoiceRoom 是一个开源的音视频 UI 组件，通过在项目中集成 TUIVoiceRoom 组件，您只需要编写几行代码就可以为您的 App 添加“多人语音聊天”等场景。TUIVoiceRoom同时支持 [Android](https://cloud.tencent.com/document/product/647/45737)、[小程序](https://cloud.tencent.com/document/product/647/65386)等平台，基本功能如下图所示：
 
@@ -43,13 +43,8 @@ pod install
 ### 步骤三：初始化并登陆 [TRTCVoiceRoom#login](https://cloud.tencent.com/document/product/647/47928#login)
 
 ```Swift
-class YourViewController: UIViewController {
-
-    // 初始化
-    let mTRTCVoiceRoom = TRTCVoiceRoom.shared()
-
-}
-
+// 初始化
+let mTRTCVoiceRoom = TRTCVoiceRoom.shared()
 // 登陆
 mTRTCVoiceRoom.login(sdkAppID: SDKAppID, userId: userId, userSig: userSig) { code, message in
     if code == 0 {
